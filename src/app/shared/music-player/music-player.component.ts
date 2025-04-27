@@ -9,6 +9,7 @@ import { LucideAngularModule, Play, SkipBack, SkipForward, Pause } from 'lucide-
   styleUrls: ['./music-player.component.css'],
 })
 export class MusicPlayerComponent implements OnInit {
+
   //Iconos lucide-angular
   readonly SkipBack = SkipBack;
   readonly Play = Play;

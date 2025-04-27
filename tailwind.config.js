@@ -3,6 +3,9 @@ module.exports = {
   content: ['./src/**/*.{html,ts}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Cal Sans', 'sans-serif'],
+      },
       colors: {
         // Modo claro - naturaleza viva
         cielo: '#E0F2FE', // azul clarito (sky-100)
