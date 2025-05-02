@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* styles.css o global stylesheet */
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  transition: opacity 0.7s ease-in-out;
+}
+
+body::before {
+  @apply bg-gradient-to-tr from-cielo via-amanecerRosa to-sol;
+  opacity: 1;
+}
+
+body::after {
+  @apply bg-gradient-to-tr from-bosque via-noche to-lava;
+  opacity: 0;
+}
+
+.dark body::before {
+  opacity: 0;
+}
+
+.dark body::after {
+  opacity: 1;
+}
+
+.title {
+  @apply text-tituloDia;
+}
+
+.subtitle {
+  @apply text-subtituloDia;
+}
+
+.dark .title {
+  @apply text-tituloNoche;
+}
+
+.dark .subtitle {
+  @apply text-subtituloNoche;
+}

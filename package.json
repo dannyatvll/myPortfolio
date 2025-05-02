@@ -1,17 +1,17 @@
 {
   "name": "portfolio-legend",
+  "type": "module",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "eslint . --ext .ts,.html",
-    "lint:fix": "eslint \"src/**/*.{ts,html}\" --fix",
-    "format": "prettier --write ."
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix"
   },
-  "private": true,
   "dependencies": {
     "@angular/common": "^19.2.0",
     "@angular/compiler": "^19.2.0",
@@ -30,12 +30,14 @@
     "@angular-devkit/build-angular": "^19.2.6",
     "@angular/cli": "^19.2.6",
     "@angular/compiler-cli": "^19.2.0",
+    "@antfu/eslint-config": "^4.12.0",
     "@types/jasmine": "~5.1.0",
-    "angular-eslint": "19.3.0",
+    "angular-eslint": "^19.3.0",
     "autoprefixer": "^10.4.21",
-    "eslint": "^9.23.0",
-    "eslint-config-prettier": "^10.1.2",
-    "eslint-plugin-prettier": "^5.2.6",
+    "eslint": "^9.25.1",
+    "eslint-plugin-html": "^8.1.2",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-unused-imports": "^4.1.4",
     "jasmine-core": "~5.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -46,6 +48,6 @@
     "prettier": "^3.5.3",
     "tailwindcss": "^3.4.17",
     "typescript": "~5.7.2",
-    "typescript-eslint": "8.27.0"
+    "typescript-eslint": "^8.31.0"
   }
 }

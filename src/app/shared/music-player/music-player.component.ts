@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { LucideAngularModule, Play, SkipBack, SkipForward, Pause } from 'lucide-angular';
+import type { OnInit } from '@angular/core'
+import { Component } from '@angular/core'
+import { LucideAngularModule, Pause, Play, SkipBack, SkipForward } from 'lucide-angular'
 
 @Component({
   selector: 'app-music-player',
@@ -9,12 +10,11 @@ import { LucideAngularModule, Play, SkipBack, SkipForward, Pause } from 'lucide-
   styleUrls: ['./music-player.component.css'],
 })
 export class MusicPlayerComponent implements OnInit {
-
-  //Iconos lucide-angular
-  readonly SkipBack = SkipBack;
-  readonly Play = Play;
-  readonly Pause = Pause;
-  readonly SkipForward = SkipForward;
+  // Iconos lucide-angular
+  readonly SkipBack = SkipBack
+  readonly Play = Play
+  readonly Pause = Pause
+  readonly SkipForward = SkipForward
 
   tracks = [
     {
@@ -41,31 +41,31 @@ export class MusicPlayerComponent implements OnInit {
       artist: 'Alex Producciones',
       src: 'music/happy-lofi-alex-productions.mp3',
     },
-  ];
+  ]
 
-  currentTrackIndex = 0;
-  audio!: HTMLAudioElement;
-  progress = 0;
-  volume = 1;
-  hasInteracted = false;
-  isExpanded = false;
-  timeoutId!: ReturnType<typeof setTimeout>;
+  currentTrackIndex = 0
+  audio!: HTMLAudioElement
+  progress = 0
+  volume = 1
+  hasInteracted = false
+  isExpanded = false
+  timeoutId!: ReturnType<typeof setTimeout>
 
   ngOnInit(): void {
-    this.audio = new Audio(this.tracks[this.currentTrackIndex].src);
+    this.audio = new Audio(this.tracks[this.currentTrackIndex].src)
     this.audio.addEventListener('timeupdate', () => {
-      this.progress = (this.audio.currentTime / this.audio.duration) * 100 || 0;
-    });
+      this.progress = (this.audio.currentTime / this.audio.duration) * 100 || 0
+    })
   }
 
   onMouseEnter() {
-    clearTimeout(this.timeoutId);
-    this.isExpanded = true;
+    clearTimeout(this.timeoutId)
+    this.isExpanded = true
   }
 
   onMouseLeave() {
     this.timeoutId = setTimeout(() => {
-      this.isExpanded = false;
-    }, 2000); // 5 segundos
+      this.isExpanded = false
+    }, 2000) // 5 segundos
   }
 }

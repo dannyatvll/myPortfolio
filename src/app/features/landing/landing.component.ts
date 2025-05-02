@@ -1,60 +1,66 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { CommonModule } from '@angular/common'
+import type { AfterViewInit } from '@angular/core'
+import { Component } from '@angular/core'
+import { gsap } from 'gsap'
 
 @Component({
   selector: 'app-landing',
   imports: [CommonModule],
   templateUrl: './landing.component.html',
-  styleUrl: './landing.component.css',
+  styleUrl: './landing.component.css'
 })
-export class LandingComponent implements OnInit, AfterViewInit {
-  backgroundGradient = 'bg-gradient-to-tr from-cielo via-rio to-pino';
-  backgroundGradientNight = 'bg-gradient-to-tr from-lava via-noche to-bosque';
-  isDarkMode = false;
-
-  ngOnInit(): void {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    this.isDarkMode = prefersDark;
-  }
-
-  get currentBackground() {
-    return this.isDarkMode ? this.backgroundGradientNight : this.backgroundGradient;
-  }
-
+export class LandingComponent implements AfterViewInit {
   ngAfterViewInit(): void {
-    const timeline = gsap.timeline();
+    this.showNameAndRole()
+    this.movePresentationBlock()
+  }
 
-    const letters = document.querySelectorAll('.letter');
+  showNameAndRole(): void {
+    const timeline = gsap.timeline()
+    const name = document.querySelectorAll('.name')
+    const role = document.querySelector('.role')
+    const slogan = document.querySelector('.slogan')
 
-    letters.forEach((letter, index) => {
-      timeline.from(letter, {
-        opacity: 0,
-        x: index % 2 === 0 ? -50 : 50,
-        y: index % 2 === 0 ? -50 : 50,
-        duration: 0.6,
-        ease: 'power2.out',
-        delay: index * 0.05,
-      });
-    });
+    timeline.from(name, {
+      opacity: 0,
+      x: (i: number) => (i % 2 === 0 ? -50 : 50),
+      y: (i: number) => (i % 2 === 0 ? -100 : 100),
+      duration: 1.5,
+      ease: 'power2.out',
+      stagger: 41
+    })
 
     timeline.fromTo(
-      '.atiencia',
-      { autoAlpha: 0, y: 20 },
+      role,
+      { autoAlpha: 0, y: 40 },
+      { autoAlpha: 1, y: 0, duration: 1.2, ease: 'power2.out' },
+      '+=0.2'
+    )
+
+    timeline.fromTo(
+      slogan,
+      { autoAlpha: 0, y: 30 },
       { autoAlpha: 1, y: 0, duration: 1, ease: 'power2.out' },
-      '+=0.5',
-    );
+      '+=0.1'
+    )
   }
 
-  getAnimationClass(index: number): string {
-    const animations = [
-      'animate-fade-in-down',
-      'animate-fade-in-left',
-      'animate-fade-in-right',
-      'animate-fade-in-up',
-      'animate-fade-in-down',
-    ];
+  movePresentationBlock(): void {
+    gsap.registerPlugin(ScrollTrigger)
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        scrub: true,
+        pin: true
+      }
+    })
 
-    return animations[index % animations.length];
+    timeline.to('.hero-content', {
+      scale: 1.2,
+      opacity: 0,
+      ease: 'power2.out'
+    })
   }
 }
